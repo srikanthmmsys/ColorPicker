@@ -1,25 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
+import React, { createContext, useState } from "react";
+import "./App.css";
+import ColorPickerNavBar from "./components/ColorPickerNavBar";
+import PixelGrid from "./components/PixelGrid";
+export const store = createContext();
+const App = () => {
+  const [changeColor, setChangeColor] = useState("#ccc");
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <store.Provider value={[changeColor, setChangeColor]}>
+        <ColorPickerNavBar />
+        <PixelGrid />
+      </store.Provider>
+    </>
   );
-}
+};
 
 export default App;
